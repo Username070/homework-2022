@@ -1,0 +1,33 @@
+#same-container {
+    display: table;
+}
+
+#same-wrapper {
+    display: table-cell;
+    width: 100%;
+    position: relative;
+}
+
+#same-input {
+    width: 90%;
+    padding: 0.8rem 2% 0.8rem 8%;
+    font-size: 1rem;
+    border: 0;
+    background-color: rgb(240, 243, 245);
+}
+
+#same-input:focus {
+    outline: none;
+}
+
+#same-wrapper:focus-within{
+    transform: scale(1.05);
+}
+
+#same-car {
+    position: absolute;
+    transform: translate(50%, -50%);
+    font-size: 1.4rem;
+    top: 50%;
+    left: 1%;
+}

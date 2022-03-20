@@ -1,0 +1,42 @@
+#different-container {
+    display: table;
+}
+
+#different-global-wrapper {
+    display: table-cell;
+    width: 100%;
+}
+
+.different-wrapper {
+    position: relative;
+    display: inline-grid;
+    width: 50%;
+}
+
+.different-input {
+    width: 84%;
+    padding: 0.8rem 2% 0.8rem 14%;
+    font-size: 1rem;
+    border: 0;
+    background-color: rgb(240, 243, 245);
+}
+
+.different-car {
+    position: absolute;
+    transform: translate(50%, -50%);
+    font-size: 1.4rem;
+    top: 50%;
+    left: 1%;
+}
+
+.different-input:focus {
+    outline: none;
+}
+
+#different-wrapper-1:focus-within{
+    transform: scale(1.05);
+}
+
+#different-wrapper-2:focus-within{
+    transform: scale(1.05);
+}

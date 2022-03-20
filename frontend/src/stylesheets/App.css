@@ -1,0 +1,35 @@
+body {
+    font-family: "TT Hoves Variable", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-feature-settings: 'ss04','ss05';
+}
+
+.app {
+    margin: auto;
+    width: 40%;
+}
+
+.title {
+    text-align: left;
+}
+
+button:hover {
+    filter: brightness(95%);
+}
+
+.drop-offs {
+    border: 0;
+    outline: 0;
+    padding: 0.4rem 0;
+}
+
+button {
+    color: white;
+    border-radius: 10%;
+    margin-left: 6px;
+    background: rgb(254,106,20);
+    background: linear-gradient(135deg, rgba(254,106,20,1) 0%, rgba(234,63,33,1) 100%);
+    border: 0;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+}
