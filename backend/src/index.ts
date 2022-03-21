@@ -11,7 +11,7 @@ const port = 3001;
 app.use(cors())
 
 app.get('/', (_req, res) => {
-    res.send('<h1>Congratulations 🎉 You got the WCC 2022 backend server running. Good luck with your task 🙌</h1>');
+  res.send('<h1>Congratulations 🎉 You got the WCC 2022 backend server running. Good luck with your task 🙌</h1>');
 })
 
 /**
@@ -20,31 +20,31 @@ app.get('/', (_req, res) => {
  *  returns: a JSON response
  */
 app.get('/greeting', (req, res) => {
-    res.json({ 'greeting': `Hello, ${req.query.name || 'World'} 👋`});
+  res.json({ 'greeting': `Hello, ${req.query.name || 'World'} 👋` });
 })
 
 /**
  * TODO: Add your autocompleter endpoint below this component
  */
 
- app.post('/autocomplete', (req, res) => {
+app.post('/autocomplete', (req, res) => {
 
-  let queryData = []
+  let queryData = [{}]
 
   const value = JSON.parse(req.headers["jsondata"] as string);
 
-  for (let i = 0; i < entryCount; i++) {
-    if (data[i].displayname.includes(value.text))
-    queryData.push(data[i])
+  if (value.text.length === 0) {
+    res.status(200).json(queryData);
+    return
   }
 
-  console.log(queryData)
+  for (let i = 0; i < entryCount; i++) {
+    if (data[i].displayname.includes(value.text))
+      queryData.push(data[i])
+  }
 
   res.status(200).json(queryData);
 })
-
-  // res.status(200).json(test);
-  // res.json({ "data": `${queryData}` });
 
 app.listen(port, () => {
   console.log(`Backend server is listening on port ${port}.`);
