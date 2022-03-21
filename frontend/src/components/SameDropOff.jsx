@@ -1,8 +1,8 @@
 import { FaSearch } from "react-icons/fa"
 import { IoCarSport } from "react-icons/io5"
 import "../stylesheets/SameDrop.css";
-import { useEffect } from "react";
 import { render } from 'react-dom';
+import Modal from "./Modal"
 
 const SameDropOff = () => {
 
@@ -39,6 +39,12 @@ const SameDropOff = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
+
+        if (event.target.drop.value.length === 0 || !event.target.drop.value) {
+            document.getElementById("missing-data").style.display = "block"
+        } else {
+            document.getElementById("success").style.display = "block"
+        }
     }
 
     return (
@@ -53,6 +59,12 @@ const SameDropOff = () => {
                     </div>
                     <button type="submit" title="search-cars"><FaSearch /></button>
                 </form>
+            </div>
+            <div id="missing-data" className="response-modal">
+                <Modal type={"error"} errorTitle={"An error occured by trying to perform your search"} errorMessage={"Please pick a pick up location"}/>
+            </div>
+            <div id="success" className="response-modal">
+                <Modal type={"success"} errorTitle={"Success!"} errorMessage={""}/>
             </div>
         </>
     )
