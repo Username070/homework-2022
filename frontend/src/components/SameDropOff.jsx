@@ -30,7 +30,6 @@ const SameDropOff = () => {
     }
 
     const generateAutocomplete = function (returnData) {
-        console.log(returnData)
         const autoComplete = (returnData.map((data) => (
             <option value={data.displayname}></option>
         )))
@@ -61,10 +60,10 @@ const SameDropOff = () => {
                 </form>
             </div>
             <div id="missing-data" className="response-modal">
-                <Modal type={"error"} errorTitle={"An error occured by trying to perform your search"} errorMessage={"Please pick a pick up location"}/>
+                <Modal type={"error"} errorTitle={"An error occured by trying to perform your search"} errorMessage={"Please pick a pick up location"} />
             </div>
             <div id="success" className="response-modal">
-                <Modal type={"success"} errorTitle={"Success!"} errorMessage={""}/>
+                <Modal type={"success"} errorTitle={"Success!"} errorMessage={""} />
             </div>
         </>
     )
