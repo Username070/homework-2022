@@ -1,8 +1,10 @@
+import { useCallback, useEffect } from 'react';
 import { FaSearch } from "react-icons/fa"
 import { IoCarSport } from "react-icons/io5"
 import "../stylesheets/SameDrop.css";
 import { render } from 'react-dom';
 import Modal from "./Modal"
+import debounce from 'lodash.debounce';
 
 const SameDropOff = () => {
 
@@ -10,6 +12,16 @@ const SameDropOff = () => {
         const userValue = event.target.value;
         sendRequest(userValue)
     };
+
+    const debouncedGetInputValue = useCallback(
+        debounce(getInputValue, 350)
+      , []);
+
+      useEffect(() => {
+        return () => {
+            debouncedGetInputValue.cancel();
+        }
+      }, []);
 
     const sendRequest = async function (userValue) {
 
@@ -52,7 +64,7 @@ const SameDropOff = () => {
                 <form onSubmit={onSubmit}>
                     <div id="same-wrapper">
                         <IoCarSport id="same-car" />
-                        <input name="drop" type="text" id="same-input" list="suggestions" onChange={getInputValue} autoComplete="off" />
+                        <input name="drop" type="text" id="same-input" list="suggestions" onChange={debouncedGetInputValue} autoComplete="off" />
                         <datalist id="suggestions">
                         </datalist>
                     </div>

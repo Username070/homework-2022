@@ -1,8 +1,10 @@
+import { useCallback, useEffect } from 'react';
 import { FaSearch } from "react-icons/fa"
 import { IoCarSport } from "react-icons/io5"
 import "../stylesheets/DifferentDrop.css";
 import { render } from 'react-dom';
 import Modal from "./Modal"
+import debounce from 'lodash.debounce';
 
 const DifferentDropOff = () => {
 
@@ -13,6 +15,16 @@ const DifferentDropOff = () => {
         inputBox = event.target.id
         sendRequest(userValue)
     };
+
+    const debouncedGetInputValue = useCallback(
+        debounce(getInputValue, 350)
+      , []);
+
+      useEffect(() => {
+        return () => {
+            debouncedGetInputValue.cancel();
+        }
+      }, []);
 
     const sendRequest = async function (userValue) {
 
