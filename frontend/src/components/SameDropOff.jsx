@@ -43,7 +43,7 @@ const SameDropOff = () => {
 
     const generateAutocomplete = function (returnData) {
         const autoComplete = (returnData.map((data) => (
-            <option value={data.displayname}></option>
+            <option value={data.displayname}>{data.country}</option>
         )))
         render(autoComplete, document.getElementById("suggestions"))
     }

@@ -47,7 +47,7 @@ const DifferentDropOff = () => {
     const generateAutocomplete = function (returnData) {
         console.log(returnData)
         const autoComplete = (returnData.map((data) => (
-            <option value={data.displayname}></option>
+            <option value={data.displayname}>{data.country}</option>
         )))
         if (inputBox === "different-1") {
             render(autoComplete, document.getElementById("dfSuggestions1"))
