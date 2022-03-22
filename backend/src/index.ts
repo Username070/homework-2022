@@ -1,9 +1,9 @@
-import express, { query } from 'express';
+import express from "express";
 const fs = require("fs");
-const cors = require('cors');
+const cors = require("cors");
 
-const data = JSON.parse(fs.readFileSync("./src/data/smarty.json"));
-const entryCount = Object.keys(data).length;
+const data = JSON.parse(fs.readFileSync("./src/data/smarty.json")); // Variable that's keeping whole file data
+const entryCount = Object.keys(data).length; // Get how many etries there is in a file
 
 const app = express();
 const port = 3001;
@@ -27,27 +27,28 @@ app.get('/greeting', (req, res) => {
  * TODO: Add your autocompleter endpoint below this component
  */
 
-app.post('/autocomplete', (req, res) => {
+app.post("/autocomplete", (req, res) => {
 
-  let queryData = [{}]
+  let queryData = [{}] // Initialize empty object
 
-  let value = JSON.parse(req.headers["jsondata"] as string);
+  let value = JSON.parse(req.headers["jsondata"] as string); // Get user data from request headers
  
-  value.text = value.text.toLowerCase()
+  value.query = value.query.toLowerCase()
 
-  if (value.text.length === 0) {
+  if (value.query.length === 0) { // If length of requested data === 0, return empty string
     res.status(200).json(queryData);
     return
   }
 
-  for (let i = 0; i < entryCount; i++) {
-    if (data[i].displayname.toLowerCase().includes(value.text))
-      queryData.push(data[i])
+  // Would cause performance issues if there was a lot of data
+  for (let i = 0; i < entryCount; i++) { // Loop trough whole data file
+    if (data[i].displayname.toLowerCase().includes(value.query)) // Check if "displayname" contains request data
+      queryData.push(data[i]) // Add to object
   }
 
-  if (queryData.length >=10) queryData = queryData.slice(9)
+  if (queryData.length >=10) queryData = queryData.slice(9) // Limit autocompletion suggestion to max 10
 
-  res.status(200).json(queryData);
+  res.status(200).json(queryData); // Return selected autocompletion data
 })
 
 app.listen(port, () => {

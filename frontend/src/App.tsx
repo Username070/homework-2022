@@ -10,11 +10,9 @@ function App() {
     return (
         <div className="App">
         <Router>
-          <div className="container">
             <Routes>
               <Route path="/" element={<Main/>}/>
             </Routes>
-          </div>
         </Router>
         </div>
     );

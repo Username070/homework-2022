@@ -1,8 +1,8 @@
-import "../stylesheets/App.css";
+import "../stylesheets/Modal.css";
 
-const Modal = ({ type, errorTitle, errorMessage }) => {
+const Modal = ({ type, title, message }) => {
 
-    function closeModal() {
+    function closeModal() { // Chooses a currently displayed modal to close
         if (type === "success")
             document.getElementById("success").style.display = "none";
         else {
@@ -10,14 +10,14 @@ const Modal = ({ type, errorTitle, errorMessage }) => {
         }
     }
 
-    return (
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <button class="close" onClick={closeModal}>&times;</button>
-                <p>{errorTitle}</p>
-                <p>{errorMessage}</p>
+    return ( // Modal that is used to display correct / missing data message
+        <div className="modal">
+            <div className="modal-content">
+                <span className="close" onClick={closeModal}>&times;</span>
+                <p className="modal-title">{title}</p>
+                <p className="modal-message">{message}</p>
+                <button className="dismiss" onClick={closeModal}>Dismiss</button>
             </div>
-
         </div>
     )
 }

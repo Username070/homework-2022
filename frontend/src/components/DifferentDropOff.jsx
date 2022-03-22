@@ -1,10 +1,10 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect } from "react";
 import { FaSearch } from "react-icons/fa"
 import { IoCarSport } from "react-icons/io5"
 import "../stylesheets/DifferentDrop.css";
-import { render } from 'react-dom';
+import { render } from "react-dom";
 import Modal from "./Modal"
-import debounce from 'lodash.debounce';
+import debounce from "lodash.debounce";
 
 const DifferentDropOff = () => {
 
@@ -12,31 +12,32 @@ const DifferentDropOff = () => {
 
     const getInputValue = (event) => {
         const userValue = event.target.value;
-        inputBox = event.target.id
+
+        inputBox = event.target.id // Get id of what input box is currently selected
         sendRequest(userValue)
     };
 
     const debouncedGetInputValue = useCallback(
         debounce(getInputValue, 350)
-      , []);
+        , []);
 
-      useEffect(() => {
+    useEffect(() => {
         return () => {
             debouncedGetInputValue.cancel();
         }
-      }, []);
+    }, []);
 
     const sendRequest = async function (userValue) {
 
         const data = {
-            text: userValue
+            query: userValue
         }
 
         const response = await fetch("http://localhost:3001/autocomplete", {
             body: JSON.stringify(data),
             method: "post",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
                 "JSONData": JSON.stringify(data)
             }
         });
@@ -45,7 +46,6 @@ const DifferentDropOff = () => {
     }
 
     const generateAutocomplete = function (returnData) {
-        console.log(returnData)
         const autoComplete = (returnData.map((data) => (
             <option value={data.displayname}>{data.country}</option>
         )))
@@ -71,30 +71,30 @@ const DifferentDropOff = () => {
 
     return (
         <>
-            <div id="different-container">
+            <div class="parent">
                 <form onSubmit={onSubmit}>
-                    <div id="different-global-wrapper">
-                        <div className="different-wrapper" id="different-wrapper-1">
-                            <IoCarSport className="different-car" />
-                            <input name="dfDrop1" className="different-input" id="different-1" list="dfSuggestions1" onChange={getInputValue}/>
-                            <datalist id="dfSuggestions1">
-                            </datalist>
-                        </div>
-                        <div className="different-wrapper" id="different-wrapper-2">
-                            <IoCarSport className="different-car" />
-                            <input name="dfDrop2" className="different-input" id="different-2" list="dfSuggestions2" onChange={getInputValue}/>
-                            <datalist id="dfSuggestions2">
-                            </datalist>
-                        </div>
+                    <div class="div1">
+                    <IoCarSport className="different-car" />
+                        <input name="dfDrop1" className="different-input" id="different-1" list="dfSuggestions1" onChange={getInputValue} autocomplete="off"/>
+                        <datalist id="dfSuggestions1">
+                        </datalist>
                     </div>
-                    <button type="submit" title="search-cars"><FaSearch /></button>
+                    <div class="div2">
+                    <IoCarSport className="different-car" />
+                        <input name="dfDrop2" className="different-input" id="different-2" list="dfSuggestions2" onChange={getInputValue} autocomplete="off"/>
+                        <datalist id="dfSuggestions2">
+                        </datalist>
+                    </div>
+                    <div class="div3">
+                        <button type="submit" title="search-cars" id="search"><FaSearch /></button>
+                    </div>
                 </form>
             </div>
             <div id="missing-data" className="response-modal">
-                <Modal type={"error"} errorTitle={"An error occured by trying to perform your search"} errorMessage={"Please pick a pick up location"} />
+                <Modal type={"error"} title={"An error occured by trying to perform your search"} message={"Please pick a pick up location"} />
             </div>
             <div id="success" className="response-modal">
-                <Modal type={"success"} errorTitle={"Success!"} errorMessage={""} />
+                <Modal type={"success"} title={"Success!"} message={""} />
             </div>
         </>
     )
