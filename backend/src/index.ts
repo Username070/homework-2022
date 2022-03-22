@@ -31,7 +31,9 @@ app.post('/autocomplete', (req, res) => {
 
   let queryData = [{}]
 
-  const value = JSON.parse(req.headers["jsondata"] as string);
+  let value = JSON.parse(req.headers["jsondata"] as string);
+ 
+  value.text = value.text.toLowerCase()
 
   if (value.text.length === 0) {
     res.status(200).json(queryData);
@@ -39,9 +41,11 @@ app.post('/autocomplete', (req, res) => {
   }
 
   for (let i = 0; i < entryCount; i++) {
-    if (data[i].displayname.includes(value.text))
+    if (data[i].displayname.toLowerCase().includes(value.text))
       queryData.push(data[i])
   }
+
+  if (queryData.length >=10) queryData = queryData.slice(9)
 
   res.status(200).json(queryData);
 })
