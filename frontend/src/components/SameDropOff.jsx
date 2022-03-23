@@ -60,9 +60,9 @@ const SameDropOff = () => {
 
     return (
         <>
-            <div class="parent-single">
+            <div className="parent-single">
                 <form onSubmit={onSubmit}>
-                    <div class="div1-single">
+                    <div className="div1-single">
                     <IoCarSport className="car-single" />
                         <input name="drop" type="text" className="input-single" list="suggestions" onChange={debouncedGetInputValue} autoComplete="off" />
                         <datalist id="suggestions">

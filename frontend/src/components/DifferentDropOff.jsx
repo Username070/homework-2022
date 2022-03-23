@@ -71,21 +71,21 @@ const DifferentDropOff = () => {
 
     return (
         <>
-            <div class="parent">
+            <div className="parent-double">
                 <form onSubmit={onSubmit}>
-                    <div class="div1">
-                    <IoCarSport className="different-car" />
-                        <input name="dfDrop1" className="different-input" id="different-1" list="dfSuggestions1" onChange={getInputValue} autocomplete="off"/>
+                    <div className="div1-double">
+                    <IoCarSport className="car-double" />
+                        <input name="dfDrop1" className="input-double" id="different-1" list="dfSuggestions1" onChange={getInputValue} autocomplete="off"/>
                         <datalist id="dfSuggestions1">
                         </datalist>
                     </div>
-                    <div class="div2">
-                    <IoCarSport className="different-car" />
-                        <input name="dfDrop2" className="different-input" id="different-2" list="dfSuggestions2" onChange={getInputValue} autocomplete="off"/>
+                    <div className="div2-double">
+                    <IoCarSport className="car-double" />
+                        <input name="dfDrop2" className="input-double" id="different-2" list="dfSuggestions2" onChange={getInputValue} autocomplete="off"/>
                         <datalist id="dfSuggestions2">
                         </datalist>
                     </div>
-                    <div class="div3">
+                    <div className="div3-double">
                         <button type="submit" title="search-cars" id="search"><FaSearch /></button>
                     </div>
                 </form>
