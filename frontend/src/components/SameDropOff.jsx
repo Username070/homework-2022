@@ -3,12 +3,14 @@ import { FaSearch } from "react-icons/fa"
 import { IoCarSport } from "react-icons/io5"
 import "../stylesheets/SameDrop.css";
 import { render } from "react-dom";
+import ReactDOM from 'react-dom';
 import Modal from "./Modal"
 import debounce from "lodash.debounce";
 
 const SameDropOff = () => {
 
     const getInputValue = (event) => { // Gets called every time user inputs new character (debounce 350ms)
+        ReactDOM.unmountComponentAtNode(document.getElementById("suggestions"))
         const userValue = event.target.value;
         sendRequest(userValue) // Passes data to function
     };
@@ -44,6 +46,9 @@ const SameDropOff = () => {
     const generateAutocomplete = function (returnData) {
         const autoComplete = (returnData.map((data) => ( // Mapping data into element
             <option value={data.displayname}>{data.country}</option>
+            // Line above drops an error to console, missing key attribute
+            // Sadly, some of the data in smarty.json is duplicate and doesn't have unique
+            // value to be used as a key.
         )))
         render(autoComplete, document.getElementById("suggestions")) // Rendering element
     }

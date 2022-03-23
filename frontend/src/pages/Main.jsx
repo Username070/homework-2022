@@ -16,7 +16,7 @@ const Main = () => {
     ];
 
     const optionElement = (options.map((option) => ( // Mapping options into element
-        <option value={option.value}>{option.label}</option>
+        <option key={option.value} value={option.value}>{option.label}</option>
     )))
 
     const getInitialState = () => { // Default value

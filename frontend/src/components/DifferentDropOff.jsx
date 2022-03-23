@@ -47,7 +47,7 @@ const DifferentDropOff = () => {
 
     const generateAutocomplete = function (returnData) {
         const autoComplete = (returnData.map((data) => (
-            <option value={data.displayname}>{data.country}</option>
+            <option key={data.id} value={data.displayname}>{data.country}</option>
         )))
         if (inputBox === "different-1") {
             render(autoComplete, document.getElementById("dfSuggestions1"))
@@ -75,13 +75,13 @@ const DifferentDropOff = () => {
                 <form onSubmit={onSubmit}>
                     <div className="div1-double">
                     <IoCarSport className="car-double" />
-                        <input name="dfDrop1" className="input-double" id="different-1" list="dfSuggestions1" onChange={getInputValue} autocomplete="off"/>
+                        <input name="dfDrop1" className="input-double" id="different-1" list="dfSuggestions1" onChange={getInputValue} autoComplete="off"/>
                         <datalist id="dfSuggestions1">
                         </datalist>
                     </div>
                     <div className="div2-double">
                     <IoCarSport className="car-double" />
-                        <input name="dfDrop2" className="input-double" id="different-2" list="dfSuggestions2" onChange={getInputValue} autocomplete="off"/>
+                        <input name="dfDrop2" className="input-double" id="different-2" list="dfSuggestions2" onChange={getInputValue} autoComplete="off"/>
                         <datalist id="dfSuggestions2">
                         </datalist>
                     </div>

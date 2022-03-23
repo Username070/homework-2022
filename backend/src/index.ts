@@ -32,10 +32,10 @@ app.post("/autocomplete", (req, res) => {
   let queryData = [{}] // Initialize empty object
 
   let value = JSON.parse(req.headers["jsondata"] as string); // Get user data from request headers
- 
+
   value.query = value.query.toLowerCase()
 
-  if (value.query.length === 0) { // If length of requested data === 0, return empty string
+  if (value.query.length === 0) { // If length of requested data === 0, return empty object
     res.status(200).json(queryData);
     return
   }
@@ -46,7 +46,9 @@ app.post("/autocomplete", (req, res) => {
       queryData.push(data[i]) // Add to object
   }
 
-  if (queryData.length >=10) queryData = queryData.slice(9) // Limit autocompletion suggestion to max 10
+  queryData.shift(); // Delete empty entry from object
+
+  if (queryData.length >= 10) queryData = queryData.slice(9) // Limit autocompletion suggestion to max 10
 
   res.status(200).json(queryData); // Return selected autocompletion data
 })
